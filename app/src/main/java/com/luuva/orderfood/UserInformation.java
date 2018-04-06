@@ -21,16 +21,13 @@ public class UserInformation extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_information);
-
-        ttB = (TextView) findViewById(R.id.tvBack);
+        ttB = findViewById(R.id.tvBack);
         ttB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),UserFragment.class) ;
-                startActivity(intent);
+                finish();
             }
         });
-
     }
 
 }

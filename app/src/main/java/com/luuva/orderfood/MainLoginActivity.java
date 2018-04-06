@@ -26,8 +26,7 @@ public class MainLoginActivity extends AppCompatActivity {
                             Utils.Login_Fragment).commit();
         }
 
-        // On close icon click finish activity
-        Log.d("sai", "vao nay k");
+
         /*findViewById(R.id.close_activity).setOnClickListener(
 
                 new OnClickListener() {

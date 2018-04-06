@@ -6,13 +6,7 @@
     android:layout_centerHorizontal="true"
     android:layout_margin="20dp">
 
-    android:layout_centerHorizontal="true">
 
-    <com.arlib.floatingsearchview.FloatingSearchView
-        android:id="@+id/floating_search_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/search_bar_height"
-       />
     <GridView
         android:id="@+id/gvCategory"
         android:layout_width="match_parent"

@@ -4,10 +4,14 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 
+import com.luuva.orderfood.MainActivity;
+import com.luuva.orderfood.MainLoginActivity;
 import com.luuva.util.CheckConnectNetwork;
 
 import java.io.BufferedReader;
@@ -28,11 +32,12 @@ import java.net.URLEncoder;
 public class BackgroundWorker extends AsyncTask<String,Void,String> {
    View context;
     AlertDialog alertDialog;
+    String prefname="my_data";
     public BackgroundWorker(View ctx) {
         context = ctx;
     }
     @Override
-    protected String doInBackground(String... params) {
+    public String doInBackground(String... params) {
         String type = params[0];
         String login_url = "https://lebavy1611.000webhostapp.com/login.php";
         String signup_url = "https://lebavy1611.000webhostapp.com/signup.php";
@@ -127,13 +132,14 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     @Override
     protected void onPreExecute() {
         alertDialog = new AlertDialog.Builder(context.getContext()).create();
-        //alertDialog.setTitle("Login Status");
     }
 
     @Override
     protected void onPostExecute(String result) {
+        //luu doi tuong User dang dang nhap
         alertDialog.setMessage(result);
         alertDialog.show();
+
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.luuva.orderfood;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,9 +26,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.luuva.background.BackgroundWorker;
+import com.luuva.background.SessionManager;
 import com.luuva.model.Utils;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,7 +51,9 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	private static LinearLayout loginLayout;
 	private static Animation shakeAnimation;
 	private static FragmentManager fragmentManager;
+	private static SessionManager sessionManager;
 
+	String login_url = "https://lebavy1611.000webhostapp.com/login.php";
 	public Login_Fragment() {
 
 	}
@@ -131,6 +144,10 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.loginBtn:
 			checkValidation(v);
+			//Intent intent = new Intent(v.getContext(), MainActivity.class);
+			//startActivity(intent);
+
+
 			break;
 
 		case R.id.forgot_password:
@@ -157,7 +174,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	}
 
 	// Check Validation before login
-	private void checkValidation(View v) {
+	private void checkValidation(final View v) {
 		// Get email id and password
 		String getEmailId = emailid.getText().toString();
 		String getPassword = password.getText().toString();
@@ -183,7 +200,42 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 			Toast.makeText(getActivity(), "Đang đăng nhập...", Toast.LENGTH_SHORT).show();
 			String type = "login";
 			BackgroundWorker backgroundWorker = new BackgroundWorker(v);
+			//backgroundWorker.doInBackground(type, getEmailId, getPassword);
 			backgroundWorker.execute(type, getEmailId, getPassword);
+			/*StringRequest stringRequest = new StringRequest(Request.Method.POST, login_url, new Response.Listener<String>() {
+				@Override
+				public void onResponse(String response) {
+					//
+					String s = response.trim();
+					if(s.equalsIgnoreCase("OK")){
+						sessionManager.SetLogin(true);
+						Intent intent = new Intent(v.getContext(),MainActivity.class);
+						//intent.putExtra("EMAIL",email);
+						startActivity(intent);
+						return;
+					}else
+					{
+						Toast.makeText(v.getContext(),"Đăng nhập Thất bại", Toast.LENGTH_SHORT).show();
+					}
+
+				}
+			}, new Response.ErrorListener() {
+				@Override
+				public void onErrorResponse(VolleyError error) {
+
+				}
+			}){
+				@Override
+				protected Map<String, String> getParams() throws AuthFailureError {
+					Map<String,String> params = new HashMap<>();
+
+
+					params.put("Email",email);
+					params.put("Pass",pass);
+					return params;
+				}
+			};
+			requestQueue.add(stringRequest);*/
 		}
 	}
 }

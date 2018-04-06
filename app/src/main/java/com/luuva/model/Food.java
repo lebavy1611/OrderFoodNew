@@ -1,10 +1,12 @@
 package com.luuva.model;
 
+import java.io.Serializable;
+
 /**
  * Created by luuva on 3/24/2018.
  */
 
-public class Food {
+public class Food implements Serializable{
     private int id;
     private String nameFood;
     private int price;
