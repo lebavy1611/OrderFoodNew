@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import com.luuva.orderfood.R;
 import com.luuva.model.Utils;
 
 public class MainLoginActivity extends AppCompatActivity {

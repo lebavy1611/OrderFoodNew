@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TabHost;
 
 import com.luuva.adapter.CategoryAdapter;
 import com.luuva.adapter.FoodAdapter;
+import com.luuva.background.CatDao;
 import com.luuva.model.Category;
 import com.luuva.model.Food;
 
@@ -28,7 +30,7 @@ public class HomeFragment extends Fragment {
     GridView gvCategory;
     ArrayList<Category> categories;
     CategoryAdapter adapter;
-
+    CatDao catDao;
     ListView lvFood,lvNearMe;
     ArrayList<Food> foods,foodsNearMe;
     FoodAdapter foodAdapter,nearMeAdapter;
@@ -47,7 +49,9 @@ public class HomeFragment extends Fragment {
         categories.add(new Category(4,"Tráng miệng",R.drawable.fruit));
         categories.add(new Category(5,"Nhà làm",R.drawable.homefood));
         categories.add(new Category(6,"Đồ ăn nhẹ",R.drawable.snacks));
-
+        Log.d("pic 1: ",getResources().getResourceName(R.drawable.rice)+"");
+       /* catDao = new CatDao();
+        categories = catDao.getList();*/
         adapter = new CategoryAdapter(getActivity(),R.layout.gv_item,categories);
         gvCategory.setAdapter(adapter);
 

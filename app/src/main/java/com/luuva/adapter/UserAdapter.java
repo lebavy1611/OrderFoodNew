@@ -14,17 +14,18 @@ import android.widget.TextView;
 
 import com.luuva.model.Food;
 import com.luuva.model.User;
+import com.luuva.model.UserOption;
 import com.luuva.orderfood.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserAdapter extends ArrayAdapter<User> {
+public class UserAdapter extends ArrayAdapter<UserOption> {
 
     Activity context;
     int resource;
-    List<User> objects;
-    public UserAdapter(@NonNull Activity context, int resource, @NonNull List<User> objects) {
+    List<UserOption> objects;
+    public UserAdapter(@NonNull Activity context, int resource, @NonNull List<UserOption> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
@@ -42,7 +43,7 @@ public class UserAdapter extends ArrayAdapter<User> {
         TextView name = row.findViewById(R.id.ten);
 
 
-        User user = this.objects.get(position);
+        UserOption user = this.objects.get(position);
 
         imgIcon.setImageResource(user.getPicture());
         name.setText(user.getName());
